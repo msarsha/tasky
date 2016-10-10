@@ -9,7 +9,9 @@ module.exports = () => {
 		styles: [`${root}/app/**/*.scss`],
 		vendors: [
 			`angular/angular.js`,
-			`angular-ui-router/release/angular-ui-router.js`
+			`angular-ui-router/release/angular-ui-router.js`,
+			'firebase/firebase.js',
+			'angularfire/dist/angularfire.min.js'
 		],
 		static: [
 			`${root}/index.html`

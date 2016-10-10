@@ -1,5 +1,9 @@
 function LoginController() {
   this.title = "Login Component";
+
+  this.onLogin = function($event){
+    console.log($event);
+  }
 }
 
 angular 

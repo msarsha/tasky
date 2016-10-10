@@ -1,5 +1,10 @@
 function RegisterController() {
   this.title = 'Register';
+
+  this.onRegister = function($event){
+    console.log($event)
+  }
+
 }
 
 angular 
