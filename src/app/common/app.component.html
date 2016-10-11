@@ -1,5 +1,7 @@
 <div class="app">
 	{{$ctrl.title}}
+	<a ui-sref="app.dashboard">Dashboard</a>
+	<button ng-click="$ctrl.logout()">Logout</button>
 	<!--Side nav, hear, footer goes here-->
 	<div ui-view></div>
 </div>

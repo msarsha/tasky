@@ -2,14 +2,13 @@ function authService($firebaseAuth) {
   var authData = null;
   var auth = $firebaseAuth();
 
-  function authSuccess(res) {
-    console.log(res);
-    return authData = res;
+  function onSignOut() {
+    authData = null;
   }
 
-  function authError(err) {
-    console.log(err);
-    return authData = null;
+  function authSuccess(res) {
+    authData = res;
+    return res;
   }
 
   this.isAuthenticated = function () {
@@ -19,26 +18,29 @@ function authService($firebaseAuth) {
 
   this.requireAuth = function(){
     return auth
-      .$waitForSignIn()
+      .$requireSignIn()
       .then(authSuccess);
   }
 
   this.register = function (user) {
     return auth
       .$createUserWithEmailAndPassword(user.email, user.password)
-      .then(authSuccess)
-      .catch(authError);
+      .then(authSuccess);
   };
 
   this.login = function (user) {
     return auth
       .$signInWithEmailAndPassword(user.email, user.password)
-      .then(authSuccess)
-      .catch(authError);
+      .then(authSuccess);
   }
 
   this.getUser = function(){
     return authData;
+  }
+
+  this.logout = function(){
+     return auth
+      .$signOut(onSignOut);
   }
 }
 
