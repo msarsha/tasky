@@ -7,20 +7,34 @@ function authService($firebaseAuth) {
     return authData = res;
   }
 
+  function authError(err) {
+    console.log(err);
+    return authData = null;
+  }
+
   this.isAuthenticated = function () {
+    authData = auth.$getAuth();
     return !!authData;
   };
+
+  this.requireAuth = function(){
+    return auth
+      .$waitForSignIn()
+      .then(authSuccess);
+  }
 
   this.register = function (user) {
     return auth
       .$createUserWithEmailAndPassword(user.email, user.password)
-      .then(authSuccess);
+      .then(authSuccess)
+      .catch(authError);
   };
 
   this.login = function (user) {
     return auth
       .$signInWithEmailAndPassword(user.email, user.password)
-      .then(authSuccess);
+      .then(authSuccess)
+      .catch(authError);
   }
 }
 

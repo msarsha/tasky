@@ -25,10 +25,13 @@ angular
         return !!(state.data && state.data.requireAuth);
       }
     }, function () {
-      if (!authService.isAuthenticated())
-        return $state.target('auth.login');
+      return authService
+        .requireAuth()
+        .catch(function(){
+          return $state.target('auth.login');
+        })
     })
-
+    
     // when navigating to auth state and user already authenticated
     // redirect to app state
     $transitions.onStart({
