@@ -1,27 +1,12 @@
-function DashboardController() {
+function DashboardController(projectService) {
   var self = this;
 
   this.$onInit = function () {
-    this.i = 4;
-    this.projects = [
-      {
-        title: 'project 1'
-      },
-      {
-        title: 'project 2'
-      }
-    ]
-  }
-
-  this.change = function () {
-    this.projects = [
-      {
-        title: 'project ' + this.i++
-      },
-      {
-        title: 'project 2'
-      }
-    ]
+    projectService
+      .getAll()
+      .then(function (res) {
+        self.projects = res;
+      })
   }
 }
 
