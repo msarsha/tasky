@@ -6,7 +6,7 @@ function LoginController(authService, $state) {
       .login($event.user)
       .then(function(){
         console.log('logged in');
-        $state.go('dashboard');
+        $state.go('app');
       })
   }
 }
