@@ -1,8 +1,13 @@
-function LoginController() {
+function LoginController(authService, $state) {
   this.title = "Login Component";
 
   this.onLogin = function($event){
-    console.log($event);
+    authService
+      .login($event.user)
+      .then(function(){
+        console.log('logged in');
+        $state.go('dashboard');
+      })
   }
 }
 

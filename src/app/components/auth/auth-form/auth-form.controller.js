@@ -1,7 +1,7 @@
 function AuthFormController (){
   this.$onInit = function(){
     this.user = {
-      username: '',
+      email: '',
       password: ''
     }
   }

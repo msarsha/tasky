@@ -1,8 +1,13 @@
-function RegisterController() {
-  this.title = 'Register';
+function RegisterController(authService, $state) {
+  this.title = 'Register Component';
 
   this.onRegister = function($event){
-    console.log($event)
+    authService
+      .register($event.user)
+      .then(function(){
+        console.log('registered !');
+        $state.go('app');
+      })
   }
 
 }

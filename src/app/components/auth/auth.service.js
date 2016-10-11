@@ -1,9 +1,25 @@
-function AuthService() {
+function authService($firebaseAuth) {
+  var authData = null;
+  var auth = $firebaseAuth();
+  
   this.isAuthenticated = function(){
-    return false;
+    return !!authData;
+  };
+
+  this.register = function(user){
+    return auth
+      .$createUserWithEmailAndPassword(user.email, user.password)
+      .then(function (response) {
+        console.log(response);
+        return authData = response;
+      });
+  };
+
+  this.login = function(user){
+    
   }
-};
+}
 
 angular
   .module('auth')
-  .service('AuthService', AuthService);
+  .service('authService', authService);

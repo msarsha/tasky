@@ -16,7 +16,7 @@ angular
         component: 'register'
       })
   })
-  .run(function ($transitions, $state, AuthService) {
+  .run(function ($transitions, $state, authService) {
 
     // when navigating to state that require auth and user is NOT authenticated
     // redirect to login state
@@ -25,7 +25,7 @@ angular
         return !!(state.data && state.data.requireAuth);
       }
     }, function () {
-      if (!AuthService.isAuthenticated())
+      if (!authService.isAuthenticated())
         return $state.target('auth.login');
     })
 
@@ -34,7 +34,7 @@ angular
     $transitions.onStart({
       to: 'auth.*'
     }, function () {
-      if (AuthService.isAuthenticated())
+      if (authService.isAuthenticated())
         return $state.target('app');
     })
   });

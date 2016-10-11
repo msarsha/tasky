@@ -25,6 +25,7 @@ angular
       storageBucket: "projectmonitor-45412.appspot.com",
       messagingSenderId: "423185973264"
     };
+
     firebase.initializeApp(firebaseConfig);
 
     // init firebase urls
