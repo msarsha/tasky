@@ -4,6 +4,12 @@ function ProjectFormController() {
       this.project = angular.copy(this.project);
   }
 
+  this.$onInit = function(){
+    this.project = {
+      title: ''
+    }
+  }
+
   this.submitForm = function(){
     this.onSubmit({
       $event: {
