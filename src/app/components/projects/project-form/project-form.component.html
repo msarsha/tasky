@@ -1,0 +1,4 @@
+<form name="projectForm" ng-submit="$ctrl.submitForm()">
+  <input ng-model="$ctrl.project.title" name="title">
+  <button type="submit" ng-disabled="projectForm.$invalid">{{$ctrl.buttonValue}}</button>
+</form>

@@ -1,5 +1,6 @@
 var dashboard = {
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
+  controller: 'DashboardController'
 };
 
 angular

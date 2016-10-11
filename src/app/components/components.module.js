@@ -1,5 +1,6 @@
 angular
   .module('components', [
     'dashboard',
-    'auth'
+    'auth',
+    'projects'
   ]);

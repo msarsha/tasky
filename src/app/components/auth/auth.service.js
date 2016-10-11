@@ -36,6 +36,10 @@ function authService($firebaseAuth) {
       .then(authSuccess)
       .catch(authError);
   }
+
+  this.getUser = function(){
+    return authData;
+  }
 }
 
 angular
