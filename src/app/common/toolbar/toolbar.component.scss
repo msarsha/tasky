@@ -4,13 +4,18 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: #43a047;
-  color: white;
+  background: #f8fff9;
   line-height: 60px;
-  font-size: 18px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: 1px solid #737373;
 
   .links, .user{
     float: right;
+  }
+
+  .user{
+    margin-right: 20px;
   }
 
   .logo{

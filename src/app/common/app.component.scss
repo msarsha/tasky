@@ -1,26 +1,50 @@
 @import '../variables';
-
 @import 'https://fonts.googleapis.com/css?family=Cabin';
 
 html, body{
   margin: 0;
   padding: 0;
   height: 100%;
+  background: $main-back;
+}
+
+.content{
+  padding: 10px;
 }
 
 .app{
+  font-size: 18px;
   position: relative;
   font-family: 'Cabin', sans-serif;
+  //color: black;
 
-  .content{
+  .app-content{
     margin-top: 60px;
   }
 }
 
+// basic app button
 button{
   font-family: 'Cabin', sans-serif;
-  padding: 8px;
-  border: none;
-  background: none;
-  -webkit-user-select: none; /* for button */
+  padding-left:25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 0.3em;
+  border: 1px solid rgba(89.7%, 85.9%, 90.2%, 1);
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  margin: 3px;
+  font-size: 15px;
+  font-weight: 900;
+  background:none;
+  transition: all 200ms;
+
+  &:hover{
+    background: $main-back;
+    border: 1px solid rgba(89.7%, 79.9%, 90.2%, 1);
+    color: white;
+  }
 }
