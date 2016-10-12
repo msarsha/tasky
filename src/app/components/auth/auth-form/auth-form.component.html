@@ -2,6 +2,6 @@
   <form name="authForm" ng-submit="$ctrl.submit()">
     <input type="email" name="username" ng-model="$ctrl.user.email">
     <input type="password" name="password" ng-model="$ctrl.user.password">
-    <button type="submit" ng-disabled="authForm.$invalid">{{$ctrl.buttonValue}}</button>
+    <button class="button" type="submit" ng-disabled="authForm.$invalid">{{$ctrl.buttonValue}}</button>
   </form>
 </div>

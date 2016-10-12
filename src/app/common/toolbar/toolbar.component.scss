@@ -10,11 +10,19 @@
   line-height: $toolbar-h;
   padding-left: 15px;
   padding-right: 15px;
-  border-bottom: 1px solid #737373;
+  border-bottom: $border;
   margin-left: $nav-w;
 
   .links, .user{
     float: right;
+  }
+
+  .links{
+    i.material-icons{
+      font-size: 15px;
+      position: relative;
+      top: 2px;
+    }
   }
 
   .user{
