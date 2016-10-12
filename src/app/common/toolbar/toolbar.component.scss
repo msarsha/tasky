@@ -1,0 +1,19 @@
+.toolbar{
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #43a047;
+  color: white;
+  line-height: 60px;
+  font-size: 18px;
+
+  .links, .user{
+    float: right;
+  }
+
+  .logo{
+    float: left;
+  }
+}

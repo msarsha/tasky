@@ -1,6 +1,10 @@
 function AppController(authService, $state){
   this.title = 'App Component';
 
+  this.$onInit = function(){
+    this.user = authService.getUser();
+  }
+
   this.logout = function(){
     authService
       .logout()

@@ -1,14 +1,26 @@
 @import '../variables';
 
-div{
-  padding: 10px;
+@import 'https://fonts.googleapis.com/css?family=Cabin';
+
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 .app{
-  color: $primary-color;
-  background: green;
+  position: relative;
+  font-family: 'Cabin', sans-serif;
+
+  .content{
+    margin-top: 60px;
+  }
 }
 
-.root{
-  background: $secondary-background;
+button{
+  font-family: 'Cabin', sans-serif;
+  padding: 8px;
+  border: none;
+  background: none;
+  -webkit-user-select: none; /* for button */
 }
