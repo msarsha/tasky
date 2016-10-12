@@ -22,7 +22,6 @@ html, body{
   }
 }
 
-// basic app button
 .button{
   font-family: 'Cabin', sans-serif;
   padding-left:25px;
@@ -41,9 +40,39 @@ html, body{
   background:none;
   transition: all 200ms;
 
-  &:hover{
+  &:hover:not(:disabled) {
     background: $main-back;
     border: 1px solid rgba(89.7%, 79.9%, 90.2%, 1);
     color: white;
   }
+
+  &:disabled{
+    cursor: no-drop;
+  }
+}
+
+input,
+input[type="text"],
+input[type="password"]{
+  padding: 10px;
+  outline: none;
+  line-height: 15px;
+  font-size: 15px;
+  border: 1px solid rgba(89.7%, 85.9%, 90.2%, 1);
+  border-radius: 0.3em;
+  transition: all 100ms;
+
+  &:focus{
+    border-color: $main-back;
+  }
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+}
+
+a{      
+  text-decoration: none;
+      color: black;
 }
