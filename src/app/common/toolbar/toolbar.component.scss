@@ -1,14 +1,17 @@
+@import '../../variables';
+
 .toolbar{
   position: fixed;
   top:0;
   left: 0;
   right: 0;
-  height: 60px;
-  background: #f8fff9;
-  line-height: 60px;
+  height: $toolbar-h;
+  background: $secondary-back;
+  line-height: $toolbar-h;
   padding-left: 15px;
   padding-right: 15px;
   border-bottom: 1px solid #737373;
+  margin-left: $nav-w;
 
   .links, .user{
     float: right;
