@@ -1,4 +1,4 @@
-function DashboardController(projectService) {
+function DashboardController(projectService, $window) {
   var self = this;
 
   this.$onInit = function () {
@@ -18,6 +18,10 @@ function DashboardController(projectService) {
   }
 
   this.remove = function ($event) {
+    var msg = "Remove project?";
+    if (!$window.confirm(msg))
+      return;
+
     projectService
       .removeById($event.project.$id)
       .then(function (res) {
