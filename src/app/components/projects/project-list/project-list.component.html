@@ -1,5 +1,15 @@
 <div>
-  <ul>
-    <li ng-repeat="project in $ctrl.projects">{{project.title}}</li>
-  </ul>
+	<ul>
+		<li ng-repeat="project in $ctrl.projects">
+			<project 
+				project="project" 
+				on-play="$ctrl.onPlay($locals)" 
+				on-stop="$ctrl.onStop($locals)"
+				>
+			</project>
+			<span class="button" ng-click="$ctrl.remove(project)">
+				<i class="material-icons">remove_circle_outline</i>
+			</span>
+		</li>
+	</ul>
 </div>

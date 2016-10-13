@@ -49,6 +49,11 @@ html, body{
   &:disabled{
     cursor: no-drop;
   }
+
+  i.material-icons{
+    position: relative;
+    top: 7px;
+  }
 }
 
 input,

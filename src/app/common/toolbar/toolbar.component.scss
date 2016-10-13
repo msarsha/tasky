@@ -12,6 +12,7 @@
   padding-right: 15px;
   border-bottom: $border;
   margin-left: $nav-w;
+  z-index: 10;
 
   .links, .user{
     float: right;

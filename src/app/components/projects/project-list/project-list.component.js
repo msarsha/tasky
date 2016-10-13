@@ -3,7 +3,9 @@ var projectList = {
   controller: 'ProjectListController',
   bindings: {
     projects: '<',
-    onDelete: '&'
+    onDelete: '&',
+    onPlay: '&',
+    onStop: '&'
   }
 }
 

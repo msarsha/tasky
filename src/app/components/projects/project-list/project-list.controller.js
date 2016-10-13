@@ -5,7 +5,7 @@ function ProjectListController() {
     }
   }
 
-  this.deleteProject = function (project) {
+  this.remove = function (project) {
     this.onDelete({
       $event: {
         project: project
