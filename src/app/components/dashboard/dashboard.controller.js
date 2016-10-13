@@ -1,4 +1,4 @@
-function DashboardController(projectService, $window) {
+function DashboardController($window, projectService, periodService) {
   var self = this;
 
   this.$onInit = function () {
@@ -10,7 +10,11 @@ function DashboardController(projectService, $window) {
   }
 
   this.onPlay = function ($event) {
-    console.log('dashboard', $event);
+    periodService
+      .start($event.project.$id)
+      .then(function(res){
+        console.log(res);
+      })
   }
 
   this.onStop = function ($event) {
@@ -24,11 +28,13 @@ function DashboardController(projectService, $window) {
 
     projectService
       .removeById($event.project.$id)
-      .then(function (res) {
-        self.projects = self.projects.filter(function (item) {
-          return item.$id !== $event.project.$id;
-        })
-      })
+      .then(removeHandler);
+  }
+
+  function removeHandler(res) {
+    self.projects = self.projects.filter(function (item) {
+      return item.$id !== $event.project.$id;
+    })
   }
 }
 

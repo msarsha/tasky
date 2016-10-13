@@ -17,7 +17,7 @@ function projectService($firebaseArray, $firebaseRef, $firebaseObject, authServi
   }
 
   this.getAll = function () {
-    return $firebaseArray(ref.child(uid)).$loaded();
+    return ownRef.$loaded();
   }
 }
 

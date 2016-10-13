@@ -32,7 +32,7 @@ angular
     var firebaseRefConfig = {
       default: firebaseConfig.databaseURL,
       projects: firebaseConfig.databaseURL + '/projects',
-      projectForUser: firebaseConfig.databaseURL + '/projectforuser'
+      periods: firebaseConfig.databaseURL + '/periods'
     };
 
     $firebaseRefProvider.registerUrl(firebaseRefConfig);
