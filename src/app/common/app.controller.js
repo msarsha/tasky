@@ -1,4 +1,4 @@
-function AppController(authService, $state){
+function AppController(authService, projectService, periodService, $state){
   this.title = 'App Component';
 
   this.$onInit = function(){
@@ -6,6 +6,8 @@ function AppController(authService, $state){
   }
 
   this.logout = function(){
+    projectService.destroyConnections();
+    periodService.destroyConnections();
     authService
       .logout()
       .then(function(){

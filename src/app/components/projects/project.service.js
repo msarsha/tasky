@@ -1,10 +1,25 @@
 function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
+  var openConnections = [];
   var ref = $firebaseRef.projects;
   var uid = authService.getUser().uid;
-  var ownRef = $firebaseArray(ref.child(uid));
+
+  function addToConnections(fbObject) {
+    openConnections.push(fbObject);
+  }
+
+  this.destroyConnections = function () {
+    angular.forEach(openConnections, function (fbObject) {
+      if (fbObject.$destroy)
+        fbObject.$destroy();
+    })
+
+    openConnections = [];
+  }
 
   this.create = function (project) {
-    return ownRef
+    var fbRef = $firebaseArray(ref.child(uid));
+    addToConnections(fbRef);
+    return fbRef
       .$add(project)
       .then(function (res) {
         console.log(res);
@@ -12,7 +27,9 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
   }
 
   this.removeById = function (id) {
-    return $firebaseObject(ref.child(uid).child(id))
+    var fbRef = $firebaseObject(ref.child(uid).child(id));
+    addToConnections(fbRef);
+    return fbRef
       .$remove()
       .then(function () {
         return periodService
@@ -21,14 +38,20 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
   }
 
   this.getAll = function () {
-    return ownRef
-      .$loaded();
+    var fbRef = $firebaseArray(ref.child(uid));
+    addToConnections(fbRef);
+    return fbRef
+      .$loaded()
+      .catch(onError);
   }
 
   this.getAllWithLastPeriod = function () {
-    return ownRef
+    var fbRef = $firebaseArray(ref.child(uid));
+    addToConnections(fbRef);
+    return fbRef
       .$loaded()
       .then(onProjectsLoad)
+      .catch(onError);
 
     function onProjectsLoad(res) {
       var promises = [];
@@ -36,6 +59,7 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
         var promise = periodService
           .getLastByProjectId(project.$id)
           .$loaded()
+          .catch(onError)
           .then(function (r) {
             r.forEach(function (period) {
               if (!period.end)
@@ -43,13 +67,17 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
             })
 
             return project;
-          })
+          });
 
         promises.push(promise);
       })
 
       return $q.all(promises);
     }
+  }
+
+  function onError(err) {
+    console.log(err);
   }
 }
 
