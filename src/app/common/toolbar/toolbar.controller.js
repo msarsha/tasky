@@ -1,7 +1,5 @@
 function ToolbarController() {
-  this.logout = function(){
-    this.onLogout();
-  }
+
 }
 
 angular

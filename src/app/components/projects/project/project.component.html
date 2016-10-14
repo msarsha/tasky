@@ -1,6 +1,4 @@
-{{::$ctrl.project.title}}
-<button class="button" ng-click="$ctrl.play()">Start</button>
-<button class="button" ng-click="$ctrl.stop()">Stop</button>
-<span ng-if="$ctrl.project.lastPeriod">
-	<period period="$ctrl.project.lastPeriod"></period>
-</span>
+ {{::$ctrl.project.title}}
+<button class="button" ng-click="$ctrl.play()" ng-disabled="$ctrl.project.lastPeriod">Start</button>
+<button class="button" ng-click="$ctrl.stop()" ng-disabled="!$ctrl.project.lastPeriod">Stop</button>
+<period ng-if="$ctrl.project.lastPeriod" period="$ctrl.project.lastPeriod"></period>

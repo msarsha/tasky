@@ -38,7 +38,8 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
           .$loaded()
           .then(function (r) {
             r.forEach(function (period) {
-              project.lastPeriod = period;
+              if (!period.end)
+                project.lastPeriod = period;
             })
 
             return project;

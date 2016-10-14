@@ -12,7 +12,13 @@ function DashboardController($window, projectService, periodService) {
     periodService
       .start($event.project.$id)
       .then(function (res) {
+        self.projects = self.projects.filter(function (project) {
+          if (project.$id === $event.project.$id) {
+            project.lastPeriod = res;
+          }
 
+          return project;
+        })
       })
   }
 
@@ -20,7 +26,13 @@ function DashboardController($window, projectService, periodService) {
     periodService
       .stop($event.project.$id)
       .then(function (res) {
-        console.log(res);
+        self.projects = self.projects.filter(function (project) {
+          if (project.$id === $event.project.$id) {
+            project.lastPeriod = null;
+          }
+
+          return project;
+        })
       })
   }
 

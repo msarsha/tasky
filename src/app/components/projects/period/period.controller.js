@@ -1,8 +1,7 @@
 function PeriodController() {
   this.$onChanges = function(changes){
-    console.log(changes);
-    if(changes.period)
-      this.period = angular.copy(this.period);
+    // if(changes.period)
+      // this.period = angular.copy(this.period);
   }
 }
 
