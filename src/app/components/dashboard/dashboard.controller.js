@@ -2,23 +2,26 @@ function DashboardController($window, projectService, periodService) {
   var self = this;
 
   this.$onInit = function () {
-    projectService
-      .getAll()
+    projectService.getAllWithLastPeriod()
       .then(function (res) {
         self.projects = res;
-      })
+      });
   }
 
   this.onPlay = function ($event) {
     periodService
       .start($event.project.$id)
-      .then(function(res){
-        console.log(res);
+      .then(function (res) {
+
       })
   }
 
   this.onStop = function ($event) {
-    console.log('dashboard', $event);
+    periodService
+      .stop($event.project.$id)
+      .then(function (res) {
+        console.log(res);
+      })
   }
 
   this.remove = function ($event) {
@@ -29,12 +32,12 @@ function DashboardController($window, projectService, periodService) {
     projectService
       .removeById($event.project.$id)
       .then(removeHandler);
-  }
 
-  function removeHandler(res) {
-    self.projects = self.projects.filter(function (item) {
-      return item.$id !== $event.project.$id;
-    })
+    function removeHandler(res) {
+      self.projects = self.projects.filter(function (item) {
+        return item.$id !== $event.project.$id;
+      })
+    }
   }
 }
 

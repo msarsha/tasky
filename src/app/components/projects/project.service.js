@@ -1,4 +1,4 @@
-function projectService($firebaseArray, $firebaseRef, $firebaseObject, authService) {
+function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
   var ref = $firebaseRef.projects;
   var uid = authService.getUser().uid;
   var ownRef = $firebaseArray(ref.child(uid));
@@ -13,11 +13,42 @@ function projectService($firebaseArray, $firebaseRef, $firebaseObject, authServi
 
   this.removeById = function (id) {
     return $firebaseObject(ref.child(uid).child(id))
-      .$remove();
+      .$remove()
+      .then(function () {
+        return periodService
+          .removeForProject(id);
+      });
   }
 
   this.getAll = function () {
-    return ownRef.$loaded();
+    return ownRef
+      .$loaded();
+  }
+
+  this.getAllWithLastPeriod = function () {
+    return ownRef
+      .$loaded()
+      .then(onProjectsLoad)
+
+    function onProjectsLoad(res) {
+      var promises = [];
+      res.forEach(function (project) {
+        var promise = periodService
+          .getLastByProjectId(project.$id)
+          .$loaded()
+          .then(function (r) {
+            r.forEach(function (period) {
+              project.lastPeriod = period;
+            })
+
+            return project;
+          })
+
+        promises.push(promise);
+      })
+
+      return $q.all(promises);
+    }
   }
 }
 
