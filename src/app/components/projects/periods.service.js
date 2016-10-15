@@ -1,6 +1,6 @@
 function periodService($firebaseArray, $firebaseRef, $firebaseObject, authService, $q) {
   var openConnections = [];
-  var uid = authService.getUser().uid;
+  var uid = authService.getUser().uid; // TODO: sign to onAuth and change the uid when new user logged in
   var periodsRef = $firebaseRef.periods.child(uid);
   var projectsRef = $firebaseRef.projects.child(uid);
 
@@ -17,10 +17,15 @@ function periodService($firebaseArray, $firebaseRef, $firebaseObject, authServic
     openConnections = [];
   }
 
-  this.getById = function (id) {
-    var fbRef = $firebaseObject(periodsRef.child(id));
+  this.getAllForProjectForPeriod = function (projectId, fromDate, toDate) {
+    var periodRef = periodsRef
+      .child(projectId)
+      .orderByChild('start')
+      .startAt(fromDate)
+      .endAt(toDate);
+    var fbRef = $firebaseArray(periodRef);
     addToConnections(fbRef);
-    return fbRef;
+    return fbRef.$loaded();
   }
 
   this.getLastByProjectId = function (projectId) {

@@ -1,10 +1,37 @@
 function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
   var openConnections = [];
   var ref = $firebaseRef.projects;
-  var uid = authService.getUser().uid;
+  var uid = authService.getUser().uid; // TODO: sign to onAuth and change the uid when new user logged in
 
   function addToConnections(fbObject) {
     openConnections.push(fbObject);
+  }
+
+  this.getForTimePeriod = function (fromDate, toDate) {
+    var promises = [];
+
+    return this.getAll()
+      .then(function (projects) {
+        angular.forEach(projects, function (project) {
+          var promise = periodService
+            .getAllForProjectForPeriod(project.$id, fromDate, toDate)
+            .then(function (periods) {
+              if (periods.length === 0)
+                return {
+                  periods: undefined,
+                  project: project
+                }
+
+              return {
+                periods: periods,
+                project: project
+              }
+            });
+          promises.push(promise);
+        })
+
+        return $q.all(promises);
+      })
   }
 
   this.destroyConnections = function () {
@@ -66,7 +93,7 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
                 project.lastPeriod = period;
             })
 
-            return project;
+            return project; // promise will be resolved with the project
           });
 
         promises.push(promise);

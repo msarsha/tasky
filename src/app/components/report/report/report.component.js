@@ -1,5 +1,6 @@
 var report = {
-  templateUrl: './report.component.html'
+  templateUrl: './report.component.html',
+  controller: 'ReportController'
 }
 
 angular
