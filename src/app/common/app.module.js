@@ -2,6 +2,7 @@ angular
   .module('app', [
     'components',
     'templates',
+    'report',
 
     'ui.router',
     'firebase'
