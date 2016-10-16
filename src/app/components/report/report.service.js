@@ -18,6 +18,7 @@ var reportService = function ($q, Report) {
         })
       })
 
+      report.buildMonthSummary();
       resolve(report);
     })
   }

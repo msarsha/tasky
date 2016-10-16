@@ -28,10 +28,14 @@ function ReportController(projectService, reportService) {
         reportService
           .proccessReport(results, monthStart, monthEnd)
           .then(function(report){
-            console.log(report)
             self.report = report;
           })
       });
+  }
+
+  this.isWeekend = function(time){
+    var day = new Date(Number(time)).getDay();
+    return day === 5 || day === 6;
   }
 }
 

@@ -7,17 +7,37 @@
 	<table>
 		<thead>
 			<th>Date</th>
-			<th>Projects</th>
+			<th>Project</th>
+			<th>Total Time</th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="(key, value) in $ctrl.report.dates">
-				<td>{{::key | date}}</td>
+			<tr ng-repeat="(key, value) in $ctrl.report.dates" ng-class="{weekend: $ctrl.isWeekend(key)}">
+				<td>{{::key | date : 'dd/MM/yyyy'}}</td>
 				<td>
 					<div ng-repeat="(pKey, pValue) in value">
-						<span ng-if="pValue != 0">{{::pKey}} - {{::pValue.hour}}:{{::pValue.min}}</span>
+						<span ng-if="pValue != 0">{{::pKey}}</span>
+					</div>
+				</td>
+				<td>
+					<div ng-repeat="(pKey, pValue) in value">
+						<span ng-if="pValue != 0">{{::pValue.hour}}h:{{::pValue.min}}m</span>
 					</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+</div>
+
+<div ng-if="$ctrl.report.monthSummary" class="total-cont">
+	<div class="total">
+		<div class="header">
+			<span>Month Summary</span>
+		</div>
+		<div class="content">
+			<div class="summary" ng-repeat="(key, value) in $ctrl.report.monthSummary">
+				<span class="left">{{key}}</span>
+				<span class="right">{{value.hour}}h:{{value.min}}m</span>
+			</div>
+		</div>
+	</div>
 </div>
