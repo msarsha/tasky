@@ -1,7 +1,9 @@
 <div class="authForm">
   <form name="authForm" ng-submit="$ctrl.submit()">
-    <input type="email" name="username" ng-model="$ctrl.user.email">
-    <input type="password" name="password" ng-model="$ctrl.user.password">
-    <button class="button" type="submit" ng-disabled="authForm.$invalid">{{$ctrl.buttonValue}}</button>
+    <input required type="email" name="username" placeholder="Email" ng-model="$ctrl.user.email">
+    <input required type="password" name="password" placeholder="Password" ng-model="$ctrl.user.password">
+    <div>
+      <button class="button" type="submit" ng-disabled="authForm.$invalid">{{$ctrl.buttonValue}}</button>
+    </div>
   </form>
 </div>

@@ -2,4 +2,19 @@
 
 .register {
   // background: $basic-background;
+  width: 600px;
+  margin: 50px auto;
+  text-align: center;
+
+  h2{
+    margin-bottom: 15px;
+    color: gray;
+  }
+
+  a{
+    font-size: 15px;
+    margin-top: 15px;
+    color: cornflowerblue;
+    text-decoration: underline;
+  }
 }
