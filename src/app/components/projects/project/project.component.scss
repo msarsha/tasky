@@ -2,11 +2,67 @@
 
 .project{
   margin-bottom: 10px;
-  height: 90px;
-  border: $border;
+  height: 70px;
   padding: 5px;
+  border-radius: 4px;
+  background: #d9edf7;
+  border: 1px solid;
+  border-color: #d1d8dc;
+  transition: all 200ms;
+  line-height: 70px;
+
+  div{
+    display: inline-block;
+  }
+
+  &.running{
+    background: #fcf8e3;
+    border-color: #efecdf;
+  }
+
+  .start-time{
+    font-size: 15px;
+    color: gray;
+  }
+
+  .time-wrapper{
+    width: 25%;
+    text-align: center;
+  }
 
   .title{
-    padding: 3px;
+    font-weight: 900;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 20%; 
+  }
+
+  .button{
+    padding-left: 35px;
+    padding-right: 35px;
+    color: white;
+
+    &.stop{
+      background: #ed5565;
+    }
+
+    &.start{
+      background: #1c84c6;
+    }
+
+    &:hover:not(:disabled) {
+      background: $main-back;
+      border: 1px solid rgba(89.7%, 79.9%, 90.2%, 1);
+      color: white;
+    }
+
+    &.button--disabled{
+      background: gray;
+    }
+  }
+
+  period{
+    font-size: 23px;
   }
 }

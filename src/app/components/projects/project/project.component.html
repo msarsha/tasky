@@ -1,10 +1,17 @@
-<div class="project">
+<div class="project" ng-class="{ 'running': $ctrl.project.lastPeriod }">
 	<div class="title">
-		<span>{{::$ctrl.project.title}}</span>
+		<span class="">{{::$ctrl.project.title}}</span>
 	</div>
-	<div class="buttons">
-		<button class="button" ng-click="$ctrl.play()" ng-disabled="$ctrl.project.lastPeriod">Start</button>
-		<button class="button" ng-click="$ctrl.stop()" ng-disabled="!$ctrl.project.lastPeriod">Stop</button>
+	<div class="start-time time-wrapper" ng-if="$ctrl.project.lastPeriod">
+		<span>Started: {{::$ctrl.project.lastPeriod.start | date : 'dd/MM/yyyy HH:mm'}}</span>
+	</div>
+	<div class="time-wrapper" ng-if="!$ctrl.project.lastPeriod">
+		<button class="button start" ng-click="$ctrl.play()" ng-disabled="$ctrl.project.lastPeriod">Start</button>
+	</div>
+	<div class="time-wrapper">
 		<period ng-if="$ctrl.project.lastPeriod" period="$ctrl.project.lastPeriod"></period>
+	</div>
+	<div class="time-wrapper">
+		<button class="button stop" ng-click="$ctrl.stop()" ng-class="{ 'button--disabled': !$ctrl.project.lastPeriod }" ng-disabled="!$ctrl.project.lastPeriod">Stop</button>
 	</div>
 </div>
