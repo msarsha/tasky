@@ -23,7 +23,7 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
                 }
 
               return {
-                periods: periods,
+                periods: periods.filter(periodFilter),
                 project: project
               }
             });
@@ -32,6 +32,11 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
 
         return $q.all(promises);
       })
+
+    function periodFilter(period) {
+      if(period.end)
+        return period;
+    }      
   }
 
   this.destroyConnections = function () {

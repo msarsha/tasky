@@ -1,4 +1,4 @@
-function ReportController(projectService) {
+function ReportController(projectService, reportService) {
   var self = this;
 
   this.$onInit = function () {
@@ -24,12 +24,14 @@ function ReportController(projectService) {
 
     projectService
       .getForTimePeriod(monthStart, monthEnd)
-      .then(function(results){
-        console.log(results);
-      })
-      .catch(function(err){
-        console.log(err);
-      })
+      .then(function (results) {
+        reportService
+          .proccessReport(results, monthStart, monthEnd)
+          .then(function(report){
+            console.log(report)
+            self.report = report;
+          })
+      });
   }
 }
 
