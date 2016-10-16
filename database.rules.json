@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "projects": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "periods": {
+      ".indexOn": "start",
+      "$uid": {
+        ".indexOn": "start",
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}
