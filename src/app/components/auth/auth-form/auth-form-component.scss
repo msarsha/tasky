@@ -1,4 +1,8 @@
 .authForm{
+  *{
+    box-sizing: border-box;
+  }
+  
   .button, input{
     width: 60%;
     margin-bottom: 10px;

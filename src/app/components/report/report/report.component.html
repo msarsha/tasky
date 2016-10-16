@@ -4,12 +4,17 @@
 	<button class="button" ng-click="$ctrl.makeReport()">Report</button>
 </div>
 <div ng-if="$ctrl.report" class="report">
+	<div class="fixed-header">
+		<span>Date</span>
+		<span>Task</span>
+		<span>Daily Duration</span>
+	</div>
 	<table>
-		<thead>
+		<!--<thead>
 			<th>Date</th>
-			<th>Project</th>
-			<th>Total Time</th>
-		</thead>
+			<th>Task</th>
+			<th>Daily Duration</th>
+		</thead>-->
 		<tbody>
 			<tr ng-repeat="(key, value) in $ctrl.report.dates" ng-class="{weekend: $ctrl.isWeekend(key)}">
 				<td>{{::key | date : 'dd/MM/yyyy'}}</td>

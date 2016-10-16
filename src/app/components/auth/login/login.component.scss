@@ -6,12 +6,16 @@
   margin: 50px auto;
   text-align: center;
 
+  .tasky{
+    text-decoration: underline;
+  }
+
   .logo i{
     color: gray;
     font-size: 200px;
   }
 
-  h2{
+  h2, h4{
     margin-bottom: 15px;
     color: gray;
   }

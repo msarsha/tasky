@@ -27,6 +27,17 @@
     min-height: 30px;
     text-align: center;
   }
+
+  .fixed-header{
+    position: absolute;
+    top: 66px;
+
+    span{
+      text-align: center;
+      width: 150px;
+      display: inline-block;
+    }
+  }
 }
 
 .total-cont{
