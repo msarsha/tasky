@@ -1,4 +1,4 @@
-function periodService($firebaseArray, $firebaseRef, $firebaseObject, authService, $q) {
+function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject, authService, $q) {
   var openConnections = [];
   var uid = authService.getUser().uid; // TODO: sign to onAuth and change the uid when new user logged in
   var periodsRef = $firebaseRef.periods.child(uid);
@@ -8,13 +8,11 @@ function periodService($firebaseArray, $firebaseRef, $firebaseObject, authServic
     openConnections.push(fbObject);
   }
 
-  authService.onAuthChange(function (authData) {
-    if (authData) {
-      uid = authData.uid;
-      periodsRef = $firebaseRef.periods.child(uid);
-      projectsRef = $firebaseRef.projects.child(uid);
-    }
-  });
+  $rootScope.$on('authChanged', function () {
+    uid = authService.getUser().uid;
+    periodsRef = $firebaseRef.periods.child(uid);
+    projectsRef = $firebaseRef.projects.child(uid);
+  })
 
   this.destroyConnections = function () {
     angular.forEach(openConnections, function (fbObject) {

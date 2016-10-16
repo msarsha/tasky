@@ -1,4 +1,4 @@
-function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
+function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
   var openConnections = [];
   var ref = $firebaseRef.projects;
   var uid = authService.getUser().uid; 
@@ -7,10 +7,9 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
     openConnections.push(fbObject);
   }
 
-  authService.onAuthChange(function(authData){
-    if(authData)
-      uid = authData.uid;
-  });
+  $rootScope.$on('authChanged', function(){
+    uid = authService.getUser().uid;
+  })
 
   this.getForTimePeriod = function (fromDate, toDate) {
     var promises = [];

@@ -1,4 +1,4 @@
-function authService($firebaseAuth) {
+function authService($firebaseAuth, $rootScope) {
   var authData = null;
   var auth = $firebaseAuth();
 
@@ -13,6 +13,7 @@ function authService($firebaseAuth) {
 
   function authSuccess(res) {
     authData = res;
+    $rootScope.$broadcast('authChanged');
     return res;
   }
 
@@ -25,6 +26,11 @@ function authService($firebaseAuth) {
     return auth
       .$requireSignIn()
       .then(authSuccess);
+  }
+
+  this.waitForAuth = function(){
+    return auth
+      .$waitForSignIn();
   }
 
   this.register = function (user) {
