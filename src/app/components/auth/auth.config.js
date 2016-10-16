@@ -26,7 +26,7 @@ angular
       }
     }, function () {
       return authService
-        .waitForAuth()
+        .requireAuth()
         .catch(function(){
           return $state.target('auth.login');
         })
