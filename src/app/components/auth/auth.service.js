@@ -2,6 +2,11 @@ function authService($firebaseAuth) {
   var authData = null;
   var auth = $firebaseAuth();
 
+  auth.$onAuthStateChanged(function(res){
+    if (res)
+      authData = res;
+  })
+
   function onSignOut() {
     authData = null;
   }
@@ -35,13 +40,15 @@ function authService($firebaseAuth) {
   }
 
   this.getUser = function(){
-    return authData;
+    return auth.$getAuth();
   }
 
   this.logout = function(){
      return auth
       .$signOut(onSignOut);
   }
+
+  this.onAuthChange = auth.$onAuthStateChanged;
 }
 
 angular

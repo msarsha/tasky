@@ -4,15 +4,12 @@ var reportService = function ($q, Report) {
       var dates = createDates(fromDate, toDate);
       var report = new Report(dates);
 
-      // console.log(projectsResults);
-
-      angular.forEach(projectsResults, function(projectResult){
-        if(!projectResult.periods)
+      angular.forEach(projectsResults, function (projectResult) {
+        if (!projectResult.periods)
           return;
 
         var project = projectResult.project;
-        //projectResult { periods: [], project: {}}
-        angular.forEach(projectResult.periods, function(period){
+        angular.forEach(projectResult.periods, function (period) {
           var duration = calcDuration(period.start, period.end);
           report.addToDate(project.title, period.start, duration);
         })
@@ -47,10 +44,10 @@ var reportService = function ($q, Report) {
   }
 
   function calcDuration(start, end) {
-    var dif = (end-start) / 1000;
+    var dif = (end - start) / 1000;
     var sec = Math.floor(dif % 60);
     var min = Math.floor((dif / 60) % 60);
-    var hour = Math.floor((dif / 60 / 24) % 24);
+    var hour = Math.floor((dif / 60 / 60) % 60);
 
     return {
       sec: sec,

@@ -1,0 +1,12 @@
+@import '../../../variables';
+
+.project{
+  margin-bottom: 10px;
+  height: 90px;
+  border: $border;
+  padding: 5px;
+
+  .title{
+    padding: 3px;
+  }
+}

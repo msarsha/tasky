@@ -18,6 +18,7 @@ var report = function () {
         }
       }
     }
+    
   }
 
   return Report;

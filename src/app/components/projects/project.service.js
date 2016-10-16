@@ -7,6 +7,11 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
     openConnections.push(fbObject);
   }
 
+  authService.onAuthChange(function(authData){
+    if(authData)
+      uid = authData.uid;
+  });
+
   this.getForTimePeriod = function (fromDate, toDate) {
     var promises = [];
 

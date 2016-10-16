@@ -8,6 +8,14 @@ function periodService($firebaseArray, $firebaseRef, $firebaseObject, authServic
     openConnections.push(fbObject);
   }
 
+  authService.onAuthChange(function (authData) {
+    if (authData) {
+      uid = authData.uid;
+      periodsRef = $firebaseRef.periods.child(uid);
+      projectsRef = $firebaseRef.projects.child(uid);
+    }
+  });
+
   this.destroyConnections = function () {
     angular.forEach(openConnections, function (fbObject) {
       if (fbObject.$destroy)
