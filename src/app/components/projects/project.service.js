@@ -1,7 +1,7 @@
 function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
   var openConnections = [];
   var ref = $firebaseRef.projects;
-  var uid = authService.getUser().uid; // TODO: sign to onAuth and change the uid when new user logged in
+  var uid = authService.getUser().uid; 
 
   function addToConnections(fbObject) {
     openConnections.push(fbObject);

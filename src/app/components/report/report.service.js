@@ -11,6 +11,9 @@ var reportService = function ($q, Report) {
         var project = projectResult.project;
         angular.forEach(projectResult.periods, function (period) {
           var duration = calcDuration(period.start, period.end);
+          if (duration.min === 0 && duration.hour === 0)
+            return;
+
           report.addToDate(project.title, period.start, duration);
         })
       })

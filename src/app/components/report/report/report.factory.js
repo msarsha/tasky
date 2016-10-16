@@ -11,14 +11,31 @@ var report = function () {
         if (givenDay === new Date(Number(key)).getDate()){
           
           if(!this.dates[key].hasOwnProperty(title))
-            this.dates[key][title] = 0;
+            this.dates[key][title] = {
+              min: 0,
+              hour: 0
+            };
 
-          this.dates[key][title] += duration.hour;
+          var sum = sumDuration(this.dates[key][title], duration);
+          this.dates[key][title] = sum;
           return;
         }
       }
     }
-    
+
+    function sumDuration(d1, d2) {
+      var sumDuration = {
+        min: d1.min + d2.min,
+        hour: d1.hour + d2.hour
+      };
+
+      if(sumDuration.min >= 60){
+        sumDuration.hour += 1;
+        sumDuration.min = Math.floor(sumDuration.min % 60);
+      }
+
+      return sumDuration;
+    }
   }
 
   return Report;

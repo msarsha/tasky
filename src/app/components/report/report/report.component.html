@@ -14,7 +14,7 @@
 				<td>{{::key | date}}</td>
 				<td>
 					<div ng-repeat="(pKey, pValue) in value">
-						<span ng-if="pValue != 0">{{::pKey}} - {{::pValue}}</span>
+						<span ng-if="pValue != 0">{{::pKey}} - {{::pValue.hour}}:{{::pValue.min}}</span>
 					</div>
 				</td>
 			</tr>
