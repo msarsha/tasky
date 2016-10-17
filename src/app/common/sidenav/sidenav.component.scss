@@ -7,7 +7,7 @@
   bottom: 0;
   width: $nav-w;
   border-right: $border;
-  transition: all 0.4ms;
+  transition: all 400ms;
 
   .content{
     height: 100%;
@@ -49,10 +49,13 @@
   left: 0;
   right: 0;
   background: rgba(60.1%, 60.1%, 60.1%, 0.554);
-  display: none;
   transition: all 300ms;
+  
+  visibility: hidden;
+  opacity: 0;
 
   &.show{
-    display: block;
+    visibility: visible;
+    opacity: 1;
   }
 }
