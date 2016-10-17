@@ -15,6 +15,17 @@
   margin-left: $nav-w;
   z-index: 10;
 
+  .menu-btn{
+    float: left;
+    margin-right: 15px;
+    display: none;
+
+    i.material-icons{
+      position: relative;
+      top: 7px;
+    }
+  }
+
   .links, .user{
     float: right;
   }
@@ -36,5 +47,17 @@
     font-weight: 800;
     font-size: 24px;
     letter-spacing: 0.15em;
+  }
+
+  @media (max-width: 1115px){
+    margin-left: 0;
+
+    .user{
+      display: none;
+    }
+
+    .menu-btn{
+      display: initial;
+    }
   }
 }

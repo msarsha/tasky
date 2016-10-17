@@ -1,5 +1,7 @@
-function ToolbarController() {
-
+function ToolbarController($rootScope) {
+  this.showNav = function(){
+    $rootScope.$broadcast('navOpen');
+  }
 }
 
 angular

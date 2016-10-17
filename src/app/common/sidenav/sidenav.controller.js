@@ -1,5 +1,9 @@
-function SidenavController(){
+function SidenavController($rootScope){
+  var self = this;
 
+  $rootScope.$on('navOpen', function(){
+    self.showNav = true;
+  })
 }
 
 angular

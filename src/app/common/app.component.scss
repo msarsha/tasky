@@ -23,6 +23,10 @@ html, body{
   .app-content{
     margin-top: $toolbar-h;
     margin-left: $nav-w;
+
+    @media (max-width: 1115px){
+      margin-left: 0;
+    }
   }
 }
 

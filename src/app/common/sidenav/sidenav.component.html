@@ -1,11 +1,14 @@
-<aside class="aside">
-  <div class="logo">
-    <i class="material-icons">today</i>
-  </div>
-  <ul>
-    <li><a ui-sref="app.dashboard">Home</a></li>
-    <li><a ui-sref="app.newproject">Create Task</a></li>
-    <li><a ui-sref="app.newproject">Manage Tasks</a></li>
-    <li><a ui-sref="app.report">Report</a></li>
-  </ul>
+<aside class="aside" ng-class="{'show': $ctrl.showNav}">
+	<div class="logo">
+		<i class="material-icons">today</i>
+	</div>
+	<div class="content">
+		<ul>
+			<li><a ui-sref="app.dashboard" ng-click="$ctrl.showNav = false;">Home</a></li>
+			<li><a ui-sref="app.newproject">Create Task</a></li>
+			<li><a ui-sref="app.newproject">Manage Tasks</a></li>
+			<li><a ui-sref="app.report" ng-click="$ctrl.showNav = false;">Report</a></li>
+		</ul>
+	</div>
 </aside>
+<div class="overlay" ng-class="{'show': $ctrl.showNav}" ng-click="$ctrl.showNav = false;"></div>

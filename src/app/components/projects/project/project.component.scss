@@ -65,4 +65,20 @@
   period{
     font-size: 23px;
   }
+
+  @media (max-width: 1115px){
+    line-height: inherit;
+        
+    .time-wrapper {
+      width: 20%;
+    }
+
+    period{
+      font-size: 16px;
+    }
+
+    .title{
+      font-size: 18px;
+    }
+  }
 }
