@@ -1,11 +1,11 @@
 <div class="list">
 	<ul>
 		<li ng-repeat="project in $ctrl.projects">
-			<!--<div class="clearfix">
+			<div class="clearfix">
 				<span class="right logo-cont" ng-click="$ctrl.remove(project)">
 					<i class="material-icons">remove_circle_outline</i>
 				</span>
-			</div>-->
+			</div>
 			<project project="project" on-play="$ctrl.onPlay($locals)" on-stop="$ctrl.onStop($locals)">
 			</project>
 		</li>
