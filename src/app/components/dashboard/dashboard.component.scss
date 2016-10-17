@@ -1,6 +1,14 @@
 @import '../../variables';
 
 .dashboard{
-  // color: $secondary-color;
-  // background: $main-back;
+  .no-tasks{
+    text-align: center;
+    font-size: 22px;
+    margin-top: 30px;
+
+    .claude{
+      text-decoration: underline;
+      color: #1c84c6;
+    }
+  }
 }
