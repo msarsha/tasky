@@ -57,8 +57,11 @@ function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject
           var newPeriod = $firebaseObject(res);
           addToConnections(newPeriod);
 
+          var periodToUpdate = {};
+          periodToUpdate[newPeriod.$id] = true;
+
           projectPeriods
-            .update({ [newPeriod.$id]: true })
+            .update(periodToUpdate)
             .then(function () {
               resolve(newPeriod);
             });

@@ -5,13 +5,24 @@ import ngAnnotate from 'gulp-ng-annotate';
 import templateCache from 'gulp-angular-templatecache';
 import server from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
+import uglify from 'gulp-uglify';
+import clean from 'gulp-clean';
+
+import child from 'child_process';
 
 import configFn from './gulpfile.config';
 
 // gulp config
 var config = configFn();
+var exec = child.exec;
 
 server.create();
+
+gulp.task('clean', () => {
+	return gulp
+		.src(config.paths.dist + '/templates.js')
+		.pipe(clean());
+})
 
 gulp.task('templates', () => {
 	return gulp
@@ -25,6 +36,15 @@ gulp.task('vendors', () => {
 		// add node_modules path prefix
 		.src(config.paths.vendors.map(i => `node_modules/${i}`))
 		.pipe(concat('vendors.js'))
+		.pipe(gulp.dest(config.paths.dist));
+});
+
+gulp.task('vendors:prod', () => {
+	return gulp
+		// add node_modules path prefix
+		.src(config.paths.vendors.map(i => `node_modules/${i}`))
+		.pipe(concat('vendors.js'))
+		.pipe(uglify())
 		.pipe(gulp.dest(config.paths.dist));
 });
 
@@ -45,6 +65,20 @@ gulp.task('scripts', ['templates'], () => {
 		.pipe(sourcemaps.init())
 		.pipe(concat('bundle.js'))
 		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest(config.paths.dist));
+});
+
+gulp.task('scripts:prod', ['templates'], () => {
+	return gulp
+		.src([
+			// load modules first
+			`${config.root}/**/*.module.js`,
+			`${config.paths.dist}/templates.js`,
+			...config.paths.scripts
+		])
+		.pipe(ngAnnotate())
+		.pipe(concat('bundle.js'))
+		.pipe(uglify())
 		.pipe(gulp.dest(config.paths.dist));
 });
 
@@ -70,6 +104,14 @@ gulp.task('serve', ['static', 'vendors', 'styles', 'scripts'], () => {
 	gulp.watch([config.paths.static], ['watch-static']);
 });
 
+gulp.task('deploy', ['static', 'vendors:prod', 'styles', 'scripts:prod', 'clean'], cb => {
+	// return exec('firebase deploy', function (err, stdout, stderr) {
+	// 	console.log(stdout);
+	// 	console.log(stderr);
+	// 	cb(err);
+	// });
+})
+
 gulp.task('watch-scripts', ['scripts'], (done) => {
 	server.reload();
 	done();
@@ -79,7 +121,7 @@ gulp.task('watch-styles', ['styles'], (done) => {
 	done();
 });
 
-gulp.task('watch-static', ['static'], (done)=>{
+gulp.task('watch-static', ['static'], (done) => {
 	server.reload();
 	done();
 });
