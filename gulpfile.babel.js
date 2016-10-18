@@ -7,6 +7,7 @@ import server from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import clean from 'gulp-clean';
+import sequence from 'run-sequence';
 
 import child from 'child_process';
 
@@ -104,12 +105,13 @@ gulp.task('serve', ['static', 'vendors', 'styles', 'scripts'], () => {
 	gulp.watch([config.paths.static], ['watch-static']);
 });
 
-gulp.task('deploy', ['static', 'vendors:prod', 'styles', 'scripts:prod', 'clean'], cb => {
-	// return exec('firebase deploy', function (err, stdout, stderr) {
-	// 	console.log(stdout);
-	// 	console.log(stderr);
-	// 	cb(err);
-	// });
+gulp.task('deploy', cb => {
+	sequence('static', 'vendors:prod', 'styles', 'scripts:prod', 'clean');
+	return exec('firebase deploy', function (err, stdout, stderr) {
+		console.log(stdout);
+		console.log(stderr);
+		cb(err);
+	});
 })
 
 gulp.task('watch-scripts', ['scripts'], (done) => {
