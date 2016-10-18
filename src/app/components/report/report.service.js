@@ -32,7 +32,7 @@ var reportService = function ($q, Report) {
     days = Math.floor(toDay - fromDay);
 
     for (var i = 0; i < days + 1; i++) {
-      var date = fromDaytoDate(fromDay + i);
+      var date = Math.floor(fromDaytoDate(fromDay + i));
       dates[date] = {};
     }
 
