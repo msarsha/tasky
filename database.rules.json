@@ -7,11 +7,12 @@
       }
     },
     "periods": {
-      ".indexOn": "start",
       "$uid": {
-        ".indexOn": "start",
         ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".write": "$uid === auth.uid",
+          "$projectId": {
+              ".indexOn": "start"
+          }
       }
     }
   }
