@@ -28,8 +28,24 @@
   }
 
   ul{
-    margin-left: 20px;
-    margin-top: 10px;
+    padding-left: 40px;
+    padding-top: 10px;
+
+    li{
+      margin-bottom: 10px;
+
+      a:hover{
+        color: $main-back;
+      }
+    }
+
+    i.material-icons{
+      font-size: 16px;
+      position: relative;
+      top: 3px;
+      margin-right: 13px;
+      color: $main-back;
+    }
   }
 
   @media (max-width: 1115px){
