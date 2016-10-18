@@ -19,9 +19,15 @@ var exec = child.exec;
 
 server.create();
 
-gulp.task('clean', () => {
+gulp.task('clean:templates', () => {
 	return gulp
 		.src(config.paths.dist + '/templates.js')
+		.pipe(clean());
+})
+
+gulp.task('clean:dist', () => {
+	return gulp
+		.src(config.paths.dist)
 		.pipe(clean());
 })
 
@@ -106,7 +112,7 @@ gulp.task('serve', ['static', 'vendors', 'styles', 'scripts'], () => {
 });
 
 gulp.task('deploy', cb => {
-	sequence('static', 'vendors:prod', 'styles', 'scripts:prod', 'clean');
+	sequence('clean:dist', 'static', 'vendors:prod', 'styles', 'scripts:prod', 'clean:templates');
 	return exec('firebase deploy', function (err, stdout, stderr) {
 		console.log(stdout);
 		console.log(stderr);

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp serve",
+    "deploy": "gulp deploy",
     "install": "typings install"
   },
   "author": "SarSha",
