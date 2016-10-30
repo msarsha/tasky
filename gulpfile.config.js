@@ -13,6 +13,12 @@ module.exports = () => {
 			'firebase/firebase.js',
 			'angularfire/dist/angularfire.min.js'
 		],
+		vendorsProd: [
+			`angular/angular.min.js`,
+			`angular-ui-router/release/angular-ui-router.min.js`,
+			'firebase/firebase.js',
+			'angularfire/dist/angularfire.min.js'
+		],
 		static: [
 			`${root}/index.html`
 		]
