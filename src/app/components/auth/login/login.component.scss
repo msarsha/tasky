@@ -1,23 +1,27 @@
 @import '../../../variables';
+@import 'https://use.fontawesome.com/169939bbf1.js';
 
 .login, .register {
-  // background: $basic-background;
+  font-family: Calibri, 'Cabin', sans-serif;
   width: 600px;
   margin: 50px auto;
   text-align: center;
 
   .tasky{
-    text-decoration: underline;
+    color: $main-back;
   }
 
   .logo i{
-    color: gray;
+    color: $main-back;
     font-size: 200px;
   }
 
-  h2, h4{
-    margin-bottom: 15px;
+  h2, p{
     color: gray;
+  }
+
+  p{
+    margin-bottom: 15px;
   }
 
   h2{

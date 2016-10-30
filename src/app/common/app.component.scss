@@ -1,14 +1,16 @@
 @import '../variables';
 @import 'https://fonts.googleapis.com/css?family=Cabin';
+@import 'https://use.fontawesome.com/169939bbf1.js';
 
-html, body{
-  // height: 100vw;
+@mixin placeholder(){
+  input::-webkit-input-placeholder{
+    @content
+  }
 }
 
 *{
   margin: 0;
   padding: 0;
-  // box-sizing: border-box;
 }
 
 .content{
@@ -31,7 +33,7 @@ html, body{
 }
 
 .button{
-  font-family: 'Cabin', sans-serif;
+  font-family: Calibri, 'Cabin', sans-serif;
   padding-left:25px;
   padding-right: 25px;
   padding-top: 10px;
@@ -64,6 +66,9 @@ html, body{
   }
 }
 
+@include placeholder(){
+  font-family: Calibri, 'Cabin', sans-serif;
+}
 input,
 input[type="text"],
 input[type="password"]{
