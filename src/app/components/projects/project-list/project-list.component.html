@@ -1,6 +1,7 @@
 <div class="list">
+	<input ng-init="$ctrl.search = ''" ng-model="$ctrl.search.title" type="text" class="" placeholder="Search">
 	<ul>
-		<li ng-repeat="project in $ctrl.projects">
+		<li ng-repeat="project in $ctrl.projects | filter:$ctrl.search">
 			<div class="clearfix">
 				<span class="right logo-cont" ng-click="$ctrl.remove(project)">
 					<i class="material-icons">remove_circle_outline</i>
