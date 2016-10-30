@@ -10,11 +10,6 @@
 		<span>Daily Duration</span>
 	</div>
 	<table>
-		<!--<thead>
-			<th>Date</th>
-			<th>Task</th>
-			<th>Daily Duration</th>
-		</thead>-->
 		<tbody>
 			<tr ng-repeat="(key, value) in $ctrl.report.dates" ng-class="{weekend: $ctrl.isWeekend(key)}">
 				<td>{{::key | date : 'dd/MM/yyyy'}}</td>
