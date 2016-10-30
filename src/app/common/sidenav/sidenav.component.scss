@@ -15,6 +15,16 @@
   }
 
   .logo{
+    i.fa.fa-clock-o{
+      position: absolute;
+      font-size: 80px;
+      color: black;
+      top: 58%;
+      left: 59%;
+    }
+  }
+
+  .logo{
     border-bottom: $border;
     height: $toolbar-h;
     color: $main-back;
@@ -23,7 +33,17 @@
 
     i{
       line-height: 60px;
+      color: gray;
+      position: relative;
       font-size: 50px;
+    }
+
+    i.fa.fa-clock-o{
+      position: absolute;
+      font-size: 0.5em;
+      color: black;
+      top: 25%;
+      left: 54%;
     }
   }
 

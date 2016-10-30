@@ -1,5 +1,4 @@
 @import '../../../variables';
-@import 'https://use.fontawesome.com/169939bbf1.js';
 
 .login, .register {
   font-family: Calibri, 'Cabin', sans-serif;
@@ -11,9 +10,21 @@
     color: $main-back;
   }
 
-  .logo i{
-    color: $main-back;
-    font-size: 200px;
+  .logo{
+    i{
+      color: gray;
+      font-size: 180px;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    i.fa.fa-clock-o{
+      position: absolute;
+      font-size: 80px;
+      color: black;
+      top: 58%;
+      left: 59%;
+    }
   }
 
   h2, p{
