@@ -23,7 +23,7 @@
 
     i{
       line-height: 60px;
-      color: gray;
+      color: rgba(128,128,128,0.8);
       position: relative;
       font-size: 50px;
     }
@@ -31,7 +31,7 @@
     i.fa.fa-clock-o{
       position: absolute;
       font-size: 0.5em;
-      color: $main-back;
+      color: gray;
       top: 61%;
       left: 62%;
       background: #f3f3f4;

@@ -16,13 +16,9 @@
     }
   }
 
-  .tasky{
-    color: $main-back;
-  }
-
   .logo{
     i{
-      color: gray;
+      color: rgba(128,128,128,0.8);
       font-size: 180px;
       margin-bottom: 25px;
       position: relative;
@@ -30,8 +26,8 @@
 
     i.fa.fa-clock-o{
       position: absolute;
+      color: gray;
       font-size: 80px;
-      color: rgb(4,80,113);
       top: 68%;
       left: 65%;
       background: #f3f3f4;
@@ -52,6 +48,7 @@
 
   h2{
     margin-bottom: 5px;
+    color: #656565;
   }
 
   a{
