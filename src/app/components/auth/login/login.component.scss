@@ -12,8 +12,7 @@
     color: white;
     
     &:hover:not(:disabled) {
-        background:none;
-        color: black;
+        background: rgba(4, 80, 113, 0.75);
     }
   }
 
@@ -32,9 +31,14 @@
     i.fa.fa-clock-o{
       position: absolute;
       font-size: 80px;
-      color: $main-back;
-      top: 58%;
-      left: 59%;
+      color: rgb(4,80,113);
+      top: 68%;
+      left: 65%;
+      background: #f3f3f4;
+      border-radius: 50%;
+      height: 0.8em;
+      width: 0.8em;
+      line-height: 66px;
     }
   }
 
