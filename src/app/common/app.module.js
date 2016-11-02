@@ -13,7 +13,7 @@ angular
       .state('app', {
         url: '/app',
         component: 'app',
-        redirectTo: 'app.dashboard',
+        redirectTo: 'app.tasks',
         data: {
           requireAuth: true
         }
