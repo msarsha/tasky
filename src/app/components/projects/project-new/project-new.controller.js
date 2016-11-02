@@ -3,7 +3,7 @@ function ProjectNewController(projectService, $state) {
     projectService
       .create($event.project)
       .then(function () {
-        $state.go('app.dashboard');
+        $state.go('app');
       })
   }
 }
