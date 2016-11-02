@@ -1,4 +1,4 @@
-function ReportController(projectService, reportService) {
+function ReportController(projectService, reportService, spinnerService) {
   var self = this;
 
   this.$onInit = function () {
@@ -17,6 +17,7 @@ function ReportController(projectService, reportService) {
   }
 
   this.makeReport = function () {
+    spinnerService.show('app-spinner');
     var monthStart, monthEnd;
 
     monthStart = new Date(self.selectedYear, self.selectedMonth - 1, 1).getTime();
@@ -27,13 +28,19 @@ function ReportController(projectService, reportService) {
       .then(function (results) {
         reportService
           .proccessReport(results, monthStart, monthEnd)
-          .then(function(report){
+          .then(function (report) {
             self.report = report;
           })
+          .finally(function () {
+            spinnerService.closeAll();
+          })
+      })
+      .catch(function () {
+        spinnerService.closeAll();
       });
   }
 
-  this.isWeekend = function(time){
+  this.isWeekend = function (time) {
     var day = new Date(Number(time)).getDay();
     return day === 5 || day === 6;
   }

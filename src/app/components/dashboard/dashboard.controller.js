@@ -1,11 +1,18 @@
-function DashboardController($window, projectService, periodService) {
+function DashboardController($window, projectService, periodService, spinnerService) {
   var self = this;
 
   this.$onInit = function () {
     projectService.getAllWithLastPeriod()
       .then(function (res) {
         self.projects = res;
+      })
+      .finally(function(){
+        spinnerService.closeAll();
       });
+  }
+
+  this.$postLink = function(){
+    spinnerService.show('app-spinner');
   }
 
   this.onPlay = function ($event) {

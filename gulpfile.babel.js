@@ -41,7 +41,9 @@ gulp.task('templates', () => {
 gulp.task('vendors', () => {
 	return gulp
 		// add node_modules path prefix
-		.src(config.paths.vendors.map(i => `node_modules/${i}`))
+		.src([...config.paths.vendors.map(i => `node_modules/${i}`),
+			...config.paths.libs
+		 ])
 		.pipe(concat('vendors.js'))
 		.pipe(gulp.dest(config.paths.dist));
 });
@@ -49,7 +51,9 @@ gulp.task('vendors', () => {
 gulp.task('vendors:prod', () => {
 	return gulp
 		// add node_modules path prefix
-		.src(config.paths.vendorsProd.map(i => `node_modules/${i}`))
+		.src([...config.paths.vendorsProd.map(i => `node_modules/${i}`),
+			...config.paths.libs
+		])
 		.pipe(concat('vendors.js'))
 		.pipe(gulp.dest(config.paths.dist));
 });

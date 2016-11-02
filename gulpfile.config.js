@@ -6,15 +6,20 @@ module.exports = () => {
 		dist: 'dist',
 		scripts: [`${root}/app/**/*.js`],
 		templates: [`${root}/app/**/*.html`],
-		styles: [`${root}/app/**/*.scss`],
+		styles: [`${root}/app/**/*.scss`, `${root}/app/**/*.sass`],
+		libs: [
+			'src/lib/loading-spinner.min.js'
+		],
 		vendors: [
 			`angular/angular.js`,
+			`angular-animate/angular-animate.js`,
 			`angular-ui-router/release/angular-ui-router.js`,
 			'firebase/firebase.js',
 			'angularfire/dist/angularfire.min.js'
 		],
 		vendorsProd: [
 			`angular/angular.min.js`,
+			`angular-animate/angular-animate.min.js`,
 			`angular-ui-router/release/angular-ui-router.min.js`,
 			'firebase/firebase.js',
 			'angularfire/dist/angularfire.min.js'

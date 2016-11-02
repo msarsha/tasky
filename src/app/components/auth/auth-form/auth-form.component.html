@@ -1,4 +1,7 @@
 <div class="authForm">
+  <sarsha-spinner name="app-spinner">
+		<spinner></spinner>
+	</sarsha-spinner>
   <form name="authForm" ng-submit="$ctrl.submit()">
     <input required type="email" name="username" placeholder="Email" ng-model="$ctrl.user.email">
     <input required type="password" name="password" placeholder="Password" ng-model="$ctrl.user.password">

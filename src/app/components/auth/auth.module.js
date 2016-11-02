@@ -1,4 +1,5 @@
 angular
   .module('auth', [
-    'ui.router'
+    'ui.router',
+    'sarsha.spinner'
   ]);

@@ -4,6 +4,7 @@ angular
     'templates',
     'report',
 
+    'sarsha.spinner',
     'ui.router',
     'firebase'
   ])

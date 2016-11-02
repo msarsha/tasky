@@ -1,42 +1,47 @@
-<div>
-	<select ng-options="month for month in $ctrl.months" ng-model="$ctrl.selectedMonth"></select>
-	<select ng-options="year for year in $ctrl.years" ng-model="$ctrl.selectedYear"></select>
-	<button class="button" ng-click="$ctrl.makeReport()">Report</button>
-</div>
-<div ng-if="$ctrl.report" class="report">
-	<div class="fixed-header">
-		<span>Date</span>
-		<span>Task</span>
-		<span>Daily Duration</span>
+<div class="report-cont">
+	<sarsha-spinner name="app-spinner">
+		<spinner></spinner>
+	</sarsha-spinner>
+	<div>
+		<select ng-options="month for month in $ctrl.months" ng-model="$ctrl.selectedMonth"></select>
+		<select ng-options="year for year in $ctrl.years" ng-model="$ctrl.selectedYear"></select>
+		<button class="button" ng-click="$ctrl.makeReport()">Report</button>
 	</div>
-	<table>
-		<tbody>
-			<tr ng-repeat="(key, value) in $ctrl.report.dates" ng-class="{weekend: $ctrl.isWeekend(key)}">
-				<td>{{::key | date : 'dd/MM/yyyy'}}</td>
-				<td>
-					<div ng-repeat="(pKey, pValue) in value">
-						<span ng-if="pValue != 0">{{::pKey}}</span>
-					</div>
-				</td>
-				<td>
-					<div ng-repeat="(pKey, pValue) in value">
-						<span ng-if="pValue != 0">{{::pValue.hour}}h:{{::pValue.min}}m</span>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-
-<div ng-if="$ctrl.report.monthSummary" class="total-cont">
-	<div class="total">
-		<div class="header">
-			<span>Month Summary</span>
+	<div ng-if="$ctrl.report" class="report">
+		<div class="fixed-header">
+			<span>Date</span>
+			<span>Task</span>
+			<span>Daily Duration</span>
 		</div>
-		<div class="content">
-			<div class="summary" ng-repeat="(key, value) in $ctrl.report.monthSummary">
-				<span class="left">{{key}}</span>
-				<span class="right">{{value.hour}}h:{{value.min}}m</span>
+		<table>
+			<tbody>
+				<tr ng-repeat="(key, value) in $ctrl.report.dates" ng-class="{weekend: $ctrl.isWeekend(key)}">
+					<td>{{::key | date : 'dd/MM/yyyy'}}</td>
+					<td>
+						<div ng-repeat="(pKey, pValue) in value">
+							<span ng-if="pValue != 0">{{::pKey}}</span>
+						</div>
+					</td>
+					<td>
+						<div ng-repeat="(pKey, pValue) in value">
+							<span ng-if="pValue != 0">{{::pValue.hour}}h:{{::pValue.min}}m</span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div ng-if="$ctrl.report.monthSummary" class="total-cont">
+		<div class="total">
+			<div class="header">
+				<span>Month Summary</span>
+			</div>
+			<div class="content">
+				<div class="summary" ng-repeat="(key, value) in $ctrl.report.monthSummary">
+					<span class="left">{{key}}</span>
+					<span class="right">{{value.hour}}h:{{value.min}}m</span>
+				</div>
 			</div>
 		</div>
 	</div>
