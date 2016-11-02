@@ -71,13 +71,13 @@ function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject
 
   this.stop = function (projectId) {
     return $q(function (resolve, reject) {
-      var lastPeriod = periodsRef
+      var activePeriod = periodsRef
         .child(projectId)
         .limitToLast(1);
 
-      lastPeriod.once('value', lastPeriodLoaded);
+      activePeriod.once('value', activePeriodLoaded);
 
-      function lastPeriodLoaded(res) {
+      function activePeriodLoaded(res) {
         res.forEach(function (period) {
           period
             .ref

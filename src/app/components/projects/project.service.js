@@ -81,7 +81,7 @@ function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseO
       .catch(onError);
   }
 
-  this.getAllWithLastPeriod = function () {
+  this.getAllWithActivePeriod = function () {
     var fbRef = $firebaseArray(ref.child(uid));
     addToConnections(fbRef);
     return fbRef
@@ -100,6 +100,8 @@ function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseO
             r.forEach(function (period) {
               if (!period.end)
                 project.activePeriod = period;
+              
+              project.lastPeriod = period;
             })
 
             return project; // promise will be resolved with the project

@@ -2,16 +2,16 @@ function DashboardController($window, projectService, periodService, spinnerServ
   var self = this;
 
   this.$onInit = function () {
-    projectService.getAllWithLastPeriod()
+    projectService.getAllWithActivePeriod()
       .then(function (res) {
-        self.projects = res;
+        self.projects = sortByLastPeriod(res);
       })
-      .finally(function(){
+      .finally(function () {
         spinnerService.closeAll();
       });
   }
 
-  this.$postLink = function(){
+  this.$postLink = function () {
     spinnerService.show('app-spinner');
   }
 
@@ -19,13 +19,16 @@ function DashboardController($window, projectService, periodService, spinnerServ
     periodService
       .start($event.project.$id)
       .then(function (res) {
-        self.projects = self.projects.filter(function (project) {
+        var filteredProjects = self.projects.filter(function (project) {
           if (project.$id === $event.project.$id) {
             project.activePeriod = res;
+            project.lastPeriod = res;
           }
 
           return project;
-        })
+        });
+
+        self.projects = sortByLastPeriod(filteredProjects);
       })
   }
 
@@ -33,13 +36,15 @@ function DashboardController($window, projectService, periodService, spinnerServ
     periodService
       .stop($event.project.$id)
       .then(function (res) {
-        self.projects = self.projects.filter(function (project) {
+        var filteredProjects = self.projects.filter(function (project) {
           if (project.$id === $event.project.$id) {
             project.activePeriod = null;
           }
 
           return project;
-        })
+        });
+
+        self.projects = sortByLastPeriod(filteredProjects);
       })
   }
 
@@ -53,10 +58,25 @@ function DashboardController($window, projectService, periodService, spinnerServ
       .then(removeHandler);
 
     function removeHandler(res) {
-      self.projects = self.projects.filter(function (item) {
+      var filteredProjects = self.projects.filter(function (item) {
         return item.$id !== $event.project.$id;
       })
+
+      self.projects = sortByLastPeriod(filteredProjects);
     }
+  }
+
+  function sortByLastPeriod(tasks) {
+    return tasks.sort(function (t1, t2) {
+      if(t1.activePeriod && !t2.activePeriod) return -1
+      if(!t1.activePeriod && t2.activePeriod) return 1
+
+      if(!t1.lastPeriod && !t2.lastPeriod) return 0;
+      if (!t2.lastPeriod || t1.lastPeriod.start > t2.lastPeriod.start)
+        return -1;
+
+      return 1;
+    })
   }
 }
 
