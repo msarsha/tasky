@@ -1,13 +1,13 @@
 function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
   var openConnections = [];
   var ref = $firebaseRef.projects;
-  var uid = authService.getUser().uid; 
+  var uid = authService.getUser().uid;
 
   function addToConnections(fbObject) {
     openConnections.push(fbObject);
   }
 
-  $rootScope.$on('authChanged', function(){
+  $rootScope.$on('authChanged', function () {
     uid = authService.getUser().uid;
   })
 
@@ -38,9 +38,9 @@ function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseO
       })
 
     function periodFilter(period) {
-      if(period.end)
+      if (period.end)
         return period;
-    }      
+    }
   }
 
   this.destroyConnections = function () {
@@ -99,7 +99,7 @@ function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseO
           .then(function (r) {
             r.forEach(function (period) {
               if (!period.end)
-                project.lastPeriod = period;
+                project.activePeriod = period;
             })
 
             return project; // promise will be resolved with the project
