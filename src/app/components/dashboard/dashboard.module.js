@@ -4,8 +4,8 @@ angular
   ])
   .config(function ($stateProvider) {
     $stateProvider
-      .state('app.dashboard', {
-        url: '/dashboard',
+      .state('app.tasks', {
+        url: '/tasks',
         component: 'dashboard'
       })
   });
