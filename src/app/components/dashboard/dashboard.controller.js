@@ -68,11 +68,13 @@ function DashboardController($window, projectService, periodService, spinnerServ
 
   function sortByLastPeriod(tasks) {
     return tasks.sort(function (t1, t2) {
-      if(t1.activePeriod && !t2.activePeriod) return -1
-      if(!t1.activePeriod && t2.activePeriod) return 1
+      if (t1.activePeriod && !t2.activePeriod) return -1
+      if (!t1.activePeriod && t2.activePeriod) return 1
 
-      if(!t1.lastPeriod && !t2.lastPeriod) return 0;
-      if (!t2.lastPeriod || t1.lastPeriod.start > t2.lastPeriod.start)
+      if (!t1.lastPeriod && !t2.lastPeriod) return 0;
+      if (t1.lastPeriod && !t2.lastPeriod) return -1;
+      if (!t1.lastPeriod && t2.lastPeriod) return 1;
+      if (t1.lastPeriod.start > t2.lastPeriod.start)
         return -1;
 
       return 1;
