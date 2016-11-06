@@ -5,7 +5,8 @@ var projectList = {
     projects: '<',
     onDelete: '&',
     onPlay: '&',
-    onStop: '&'
+    onStop: '&',
+    onEdit: '&'
   }
 }
 

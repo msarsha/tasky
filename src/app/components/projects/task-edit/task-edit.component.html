@@ -1,0 +1,15 @@
+<div class="title">
+  <span>{{$ctrl.task.project.title}}</span>
+</div>
+<div class="periods-cont">
+  <ul>
+    <li ng-repeat="period in $ctrl.task.periods">
+      <div>
+        <span>Start:</span>
+        <input date-time ng-model="period.start"></input>
+        <span>End:</span>
+        <input date-time ng-model="period.end"></input>
+      </div>
+    </li>
+  </ul>
+</div>

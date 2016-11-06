@@ -1,11 +1,17 @@
-.list{
+@import '../../../variables';
 
+.list{
   margin-top: 20px;
 
   span.logo-cont{
     cursor: pointer;
-    color: red;
-  }
 
-  
+    &.red{
+      color: red;
+    }
+
+    &.blue{
+      color: $main-back;
+    }
+  }
 }

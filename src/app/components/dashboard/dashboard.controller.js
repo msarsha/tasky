@@ -1,4 +1,4 @@
-function DashboardController($window, projectService, periodService, spinnerService) {
+function DashboardController($window, projectService, periodService, spinnerService, $state) {
   var self = this;
 
   this.$onInit = function () {
@@ -30,6 +30,10 @@ function DashboardController($window, projectService, periodService, spinnerServ
 
         self.projects = sortByLastPeriod(filteredProjects);
       })
+  }
+
+  this.edit = function ($event) {
+    $state.go('app.editTask', {id: $event.project.$id});
   }
 
   this.onStop = function ($event) {

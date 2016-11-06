@@ -13,6 +13,8 @@ function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseO
 
   this.getForTimePeriod = function (fromDate, toDate) {
     var promises = [];
+    var fromDate = fromDate || new Date(2016, 0, 1).getTime();
+    var toDate = toDate || new Date().getTime();
 
     return this.getAll()
       .then(function (projects) {
@@ -100,7 +102,7 @@ function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseO
             r.forEach(function (period) {
               if (!period.end)
                 project.activePeriod = period;
-              
+
               project.lastPeriod = period;
             })
 

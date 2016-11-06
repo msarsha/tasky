@@ -12,6 +12,14 @@ function ProjectListController() {
       }
     });
   }
+
+  this.edit = function (project) {
+    this.onEdit({
+      $event: {
+        project: project
+      }
+    });
+  }
 }
 
 angular

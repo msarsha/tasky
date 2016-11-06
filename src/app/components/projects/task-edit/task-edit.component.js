@@ -1,6 +1,9 @@
 var taskEdit = {
   templateUrl: './task-edit.component.html',
-  controller: 'TaskEditController'
+  controller: 'TaskEditController',
+  bindings: {
+    task: '<task'
+  }
 };
 
 angular 
