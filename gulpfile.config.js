@@ -23,7 +23,6 @@ module.exports = () => {
 			'angularfire/dist/angularfire.min.js',
 			'moment/moment.js',
 			'adm-dtp/dist/ADM-dateTimePicker.js'
-			// 'angular-datepicker/dist/index.js'
 		],
 		vendorsProd: [
 			`angular/angular.min.js`,
@@ -32,7 +31,7 @@ module.exports = () => {
 			'firebase/firebase.js',
 			'angularfire/dist/angularfire.min.js',
 			'moment/min/moment.min.js',
-			// 'angular-datepicker/dist/index.min.js'
+			'adm-dtp/dist/ADM-dateTimePicker.min.js'
 		],
 		static: [
 			`${root}/index.html`
