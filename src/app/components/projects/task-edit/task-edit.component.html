@@ -4,13 +4,19 @@
 <div class="periods-cont">
   <ul>
     <li ng-repeat="period in $ctrl.task.periods">
-      <div>
-        <span>Start:</span>
-        <adm-dtp ng-model="period.start" on-close="$ctrl.onChange(period)" full-data="period.start_data" mindate="{{$ctrl.task.periods[$index+1].end_data.unix}}" maxdate="{{period.end_data.unix}}">
-        </adm-dtp>
-        <span>End:</span>
-        <adm-dtp ng-model="period.end" on-close="$ctrl.onChange(period)" full-data="period.end_data" mindate="{{period.start_data.unix}}" maxdate="{{$ctrl.task.periods[$index-1].start_data.unix}}">
-        </adm-dtp>
+      <div class="period-cont">
+        <div class="time">
+          <span>Start:</span>
+          <adm-dtp ng-model="period.start" on-close="$ctrl.onChange(period)" full-data="period.start_data" mindate="{{$ctrl.task.periods[$index+1].end_data.unix}}"
+            maxdate="{{period.end_data.unix}}" options='{freezeInput: true}'>
+          </adm-dtp>
+        </div>
+        <div class="time">
+          <span>End:</span>
+          <adm-dtp ng-model="period.end" on-close="$ctrl.onChange(period)" full-data="period.end_data" mindate="{{period.start_data.unix}}"
+            maxdate="{{$ctrl.task.periods[$index-1].start_data.unix}}" options='{freezeInput: true}'>
+          </adm-dtp>
+        </div>
       </div>
     </li>
   </ul>
