@@ -8,14 +8,23 @@
         <div class="period-cont">
           <div class="time">
             <span>Start:</span>
-            <adm-dtp ng-model="period.start" on-close="$ctrl.onChange(period)" full-data="period.start_data" mindate="{{$ctrl.task.periods[$index+1].end_data.unix}}"
-              maxdate="{{period.end_data.unix}}" options='{freezeInput: true}'>
+            <adm-dtp 
+              ng-model="period.start" 
+              on-close="$ctrl.onChange(period)" 
+              full-data="period.start_data" 
+              mindate="{{$ctrl.task.periods[$index+1].end_data.unix - (1000 * 60 * 60 * 24)}}"
+              maxdate="{{period.end_data.unix}}" 
+              options='{freezeInput: true}'>
             </adm-dtp>
           </div>
           <div class="time">
             <span>End:</span>
-            <adm-dtp ng-model="period.end" on-close="$ctrl.onChange(period)" full-data="period.end_data" mindate="{{period.start_data.unix}}"
-              maxdate="{{$ctrl.task.periods[$index-1].start_data.unix}}" options='{freezeInput: true}'>
+            <adm-dtp ng-model="period.end" 
+              on-close="$ctrl.onChange(period)" 
+              full-data="period.end_data" 
+              mindate="{{period.start_data.unix}}"
+              maxdate="{{$ctrl.task.periods[$index-1].start_data.unix + (1000 * 60 * 60 * 24)}}" 
+              options='{freezeInput: true}'>
             </adm-dtp>
           </div>
         </div>
