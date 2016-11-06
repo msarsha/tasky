@@ -1,22 +1,25 @@
-.ADMdtp-container{
-  display: inline-block;
-  width: 250px;
-  font-family: inherit !important;
-}
+.edit{
+  .ADMdtp-container{
+    display: inline-block;
+    width: 250px;
+    font-family: inherit !important;
+  }
 
-.title{
-  font-weight: 700;
-  font-size: 25px;
-  margin: 25px 0;
-}
+  .title{
+    font-weight: 700;
+    font-size: 25px;
+    margin: 25px 0;
+  }
 
-.periods-cont{
-  .period-cont{
-    margin: 15px 0;
+  .periods-cont{
+    .period-cont{
+      margin: 15px 0;
 
-    .time{
-      display: inline-block;
-      margin: 0 20px;
+      .time{
+        display: inline-block;
+        margin: 0 20px;
+      }
     }
   }
+
 }
