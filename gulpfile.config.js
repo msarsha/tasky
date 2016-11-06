@@ -10,7 +10,7 @@ module.exports = () => {
 			`${root}/app/**/*.scss`, 
 			`${root}/app/**/*.sass`,
 			`${root}/lib/**/*.css`,
-			'node_modules/adm-dtp/dist/ADM-dateTimePicker.css'
+			'node_modules/adm-dtp/dist/ADM-dateTimePicker.min.css'
 			],
 		libs: [
 			'src/lib/loading-spinner.min.js'
