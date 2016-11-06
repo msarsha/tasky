@@ -9,7 +9,8 @@ module.exports = () => {
 		styles: [
 			`${root}/app/**/*.scss`, 
 			`${root}/app/**/*.sass`,
-			`${root}/lib/**/*.css`
+			`${root}/lib/**/*.css`,
+			'node_modules/adm-dtp/dist/ADM-dateTimePicker.css'
 			],
 		libs: [
 			'src/lib/loading-spinner.min.js'
@@ -21,6 +22,7 @@ module.exports = () => {
 			'firebase/firebase.js',
 			'angularfire/dist/angularfire.min.js',
 			'moment/moment.js',
+			'adm-dtp/dist/ADM-dateTimePicker.js'
 			// 'angular-datepicker/dist/index.js'
 		],
 		vendorsProd: [

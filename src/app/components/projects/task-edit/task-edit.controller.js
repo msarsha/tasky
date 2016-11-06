@@ -1,4 +1,5 @@
-var taskEditCtrl = function () {
+var taskEditCtrl = function (periodService) {
+  var self = this;
   this.$onInit = function () {
     this.task.periods = filterAndSortPeriods(this.task.periods);
   }
@@ -6,6 +7,24 @@ var taskEditCtrl = function () {
   this.$onChanges = function (changes) {
     if (changes.task)
       this.task = angular.copy(this.task);
+  }
+
+  this.onChange = function (period) {
+    console.log('change', period);
+
+    if (!period.start || !period.end) {
+      alert('no value');
+      return;
+    }
+
+    period.start = new Date(period.start).getTime();
+    period.end = new Date(period.end).getTime();
+
+    periodService
+      .update(period, self.task.project.$id)
+      .then(function (res) {
+        console.log('saved ', res);
+      });
   }
 
   function filterAndSortPeriods(periods) {

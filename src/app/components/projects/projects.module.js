@@ -1,6 +1,6 @@
 angular
   // .module('projects', ['datePicker'])
-  .module('projects', [])
+  .module('projects', ['ADM-dateTimePicker'])
   .config(function ($stateProvider) {
     $stateProvider.state('app.newproject', {
       url: '/new',

@@ -6,9 +6,11 @@
     <li ng-repeat="period in $ctrl.task.periods">
       <div>
         <span>Start:</span>
-        <input date-time ng-model="period.start"></input>
+        <adm-dtp ng-model="period.start" on-close="$ctrl.onChange(period)" full-data="period.start_data" mindate="{{$ctrl.task.periods[$index+1].end_data.unix}}" maxdate="{{period.end_data.unix}}">
+        </adm-dtp>
         <span>End:</span>
-        <input date-time ng-model="period.end"></input>
+        <adm-dtp ng-model="period.end" on-close="$ctrl.onChange(period)" full-data="period.end_data" mindate="{{period.start_data.unix}}" maxdate="{{$ctrl.task.periods[$index-1].start_data.unix}}">
+        </adm-dtp>
       </div>
     </li>
   </ul>

@@ -46,6 +46,15 @@ function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject
     return fbRef.$remove();
   }
 
+  this.update = function (period, projectId) {
+    var fbObjectRef = $firebaseObject(periodsRef.child(projectId + '/' + period.$id));
+    addToConnections(fbObjectRef);
+
+    fbObjectRef.start = period.start;
+    fbObjectRef.end = period.end;
+    return fbObjectRef.$save();
+  }
+
   this.start = function (projectId) {
     return $q(function (resolve, reject) {
       var fbArrayRef = $firebaseArray(periodsRef.child(projectId));
