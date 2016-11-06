@@ -3,8 +3,12 @@
 		<spinner></spinner>
 	</sarsha-spinner>
 	<div>
-		<select ng-options="month for month in $ctrl.months" ng-model="$ctrl.selectedMonth"></select>
-		<select ng-options="year for year in $ctrl.years" ng-model="$ctrl.selectedYear"></select>
+		<div class="select">
+			<select ng-options="month for month in $ctrl.months" ng-model="$ctrl.selectedMonth"></select>
+		</div>
+		<div class="select">
+			<select ng-options="year for year in $ctrl.years" ng-model="$ctrl.selectedYear"></select>
+		</div>
 		<button class="button" ng-click="$ctrl.makeReport()">Report</button>
 	</div>
 	<div ng-if="$ctrl.report" class="report">
