@@ -23,7 +23,7 @@
               on-close="$ctrl.onChange(period)" 
               full-data="period.end_data" 
               mindate="{{period.start_data.unix}}"
-              maxdate="{{$ctrl.task.periods[$index-1].start_data.unix + (1000 * 60 * 60 * 24)}}" 
+              maxdate="{{$first ? '' : $ctrl.task.periods[$index-1].start_data.unix + (1000 * 60 * 60 * 24)}}" 
               options='{freezeInput: true}'>
             </adm-dtp>
           </div>
