@@ -1,18 +1,17 @@
-function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject, authService, $q) {
+function periodService($firebaseArray, $firebaseRef, $firebaseObject, authService, $q) {
   var openConnections = [];
-  var uid = authService.getUser().uid; // TODO: sign to onAuth and change the uid when new user logged in
-  var periodsRef = $firebaseRef.periods.child(uid);
-  var projectsRef = $firebaseRef.projects.child(uid);
+  var periodsRef = $firebaseRef.periods;
+  var projectsRef = $firebaseRef.projects;
 
   function addToConnections(fbObject) {
     openConnections.push(fbObject);
   }
 
-  $rootScope.$on('authChanged', function () {
-    uid = authService.getUser().uid;
-    periodsRef = $firebaseRef.periods.child(uid);
-    projectsRef = $firebaseRef.projects.child(uid);
-  })
+  function getUid() {
+    return authService
+      .getUser()
+      .uid
+  }
 
   this.destroyConnections = function () {
     angular.forEach(openConnections, function (fbObject) {
@@ -24,7 +23,7 @@ function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject
   }
 
   this.getAllForProjectForPeriod = function (projectId, fromDate, toDate) {
-    var periodRef = periodsRef
+    var periodRef = periodsRef.child(getUid())
       .child(projectId)
       .orderByChild('start')
       .startAt(fromDate)
@@ -35,19 +34,19 @@ function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject
   }
 
   this.getLastByProjectId = function (projectId) {
-    var fbRef = $firebaseObject(periodsRef.child(projectId).limitToLast(1));
+    var fbRef = $firebaseObject(periodsRef.child(getUid() + '/' + projectId).limitToLast(1));
     addToConnections(fbRef);
     return fbRef;
   }
 
   this.removeForProject = function (projectId) {
-    var fbRef = $firebaseObject(periodsRef.child(projectId));
+    var fbRef = $firebaseObject(periodsRef.child(getUid() + '/' + projectId));
     addToConnections(fbRef);
     return fbRef.$remove();
   }
 
   this.update = function (period, projectId) {
-    var fbObjectRef = $firebaseObject(periodsRef.child(projectId + '/' + period.$id));
+    var fbObjectRef = $firebaseObject(periodsRef.child(getUid() + '/' + projectId + '/' + period.$id));
     addToConnections(fbObjectRef);
 
     fbObjectRef.start = period.start;
@@ -57,12 +56,12 @@ function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject
 
   this.start = function (projectId) {
     return $q(function (resolve, reject) {
-      var fbArrayRef = $firebaseArray(periodsRef.child(projectId));
+      var fbArrayRef = $firebaseArray(periodsRef.child(getUid() + '/' + projectId));
       addToConnections(fbArrayRef);
       fbArrayRef
         .$add({ start: new Date().getTime() })
         .then(function (res) {
-          var projectPeriods = projectsRef.child(projectId + '/periods');
+          var projectPeriods = projectsRef.child(getUid() + '/' + projectId + '/periods');
           var newPeriod = $firebaseObject(res);
           addToConnections(newPeriod);
 
@@ -81,7 +80,7 @@ function periodService($rootScope, $firebaseArray, $firebaseRef, $firebaseObject
   this.stop = function (projectId) {
     return $q(function (resolve, reject) {
       var activePeriod = periodsRef
-        .child(projectId)
+        .child(getUid() + '/' + projectId)
         .limitToLast(1);
 
       activePeriod.once('value', activePeriodLoaded);

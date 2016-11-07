@@ -1,4 +1,4 @@
-function authService($firebaseAuth, $rootScope) {
+function authService($firebaseAuth) {
   var authData = null;
   var auth = $firebaseAuth();
 
@@ -13,7 +13,6 @@ function authService($firebaseAuth, $rootScope) {
 
   function authSuccess(res) {
     authData = res;
-    $rootScope.$broadcast('authChanged');
     return res;
   }
 
