@@ -1,16 +1,20 @@
-function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
+function projectService($q, $rootScope, $firebaseArray, $firebaseRef, $firebaseObject, authService, periodService) {
   var openConnections = [];
   var ref = $firebaseRef.projects;
+  var uid = authService.getUser().uid;
 
   function addToConnections(fbObject) {
     openConnections.push(fbObject);
   }
 
   function getUid() {
-    return authService
-      .getUser()
-      .uid;
+    return authService.getUser()
   }
+
+
+  $rootScope.$on('authChanged', function () {
+    uid = authService.getUser().uid;
+  })
 
   this.getForTimePeriod = function (fromDate, toDate) {
     var promises = [];
@@ -56,7 +60,7 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
   }
 
   this.create = function (project) {
-    var fbRef = $firebaseArray(ref.child(getUid()));
+    var fbRef = $firebaseArray(ref.child(uid));
     addToConnections(fbRef);
     return fbRef
       .$add(project)
@@ -66,7 +70,7 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
   }
 
   this.removeById = function (id) {
-    var fbRef = $firebaseObject(ref.child(getUid()).child(id));
+    var fbRef = $firebaseObject(ref.child(uid).child(id));
     addToConnections(fbRef);
     return fbRef
       .$remove()
@@ -77,7 +81,7 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
   }
 
   this.getAll = function () {
-    var fbRef = $firebaseArray(ref.child(getUid()));
+    var fbRef = $firebaseArray(ref.child(uid));
     addToConnections(fbRef);
     return fbRef
       .$loaded()
@@ -85,7 +89,7 @@ function projectService($q, $firebaseArray, $firebaseRef, $firebaseObject, authS
   }
 
   this.getAllWithActivePeriod = function () {
-    var fbRef = $firebaseArray(ref.child(getUid()));
+    var fbRef = $firebaseArray(ref.child(uid));
     addToConnections(fbRef);
     return fbRef
       .$loaded()
