@@ -1,7 +1,7 @@
 {
   "name": "tasky",
-  "version": "1.0.0",
-  "description": "Monitor the time you work on tasks",
+  "version": "1.1.0",
+  "description": "Monitor the time you work on your tasks",
   "main": "index.js",
   "scripts": {
     "start": "gulp serve",
