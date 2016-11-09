@@ -1,7 +1,8 @@
 var authForm = {
   bindings: {
     buttonValue: '@',
-    onSubmit: '&'
+    onSubmit: '&',
+    error: '<'
   },
   templateUrl: './auth-form.component.html',
   controller: 'AuthFormController'

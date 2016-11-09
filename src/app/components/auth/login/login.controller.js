@@ -1,5 +1,9 @@
 function LoginController(authService, $state, spinnerService) {
-  this.title = "Login Component";
+  var self = this;
+
+  this.$onInit = function(){
+    this.error = "";
+  }
 
   this.onLogin = function ($event) {
     spinnerService.show('app-spinner');
@@ -7,8 +11,10 @@ function LoginController(authService, $state, spinnerService) {
       .login($event.user)
       .then(function () {
         console.log('logged in');
-        spinnerService.closeAll();
         $state.go('app');
+      })
+      .catch(function(err){
+        self.error = err.message;
       })
       .finally(function () {
         spinnerService.closeAll();

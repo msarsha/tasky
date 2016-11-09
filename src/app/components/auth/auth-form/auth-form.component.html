@@ -5,6 +5,11 @@
   <form name="authForm" ng-submit="$ctrl.submit()">
     <input required type="email" name="username" placeholder="Email" ng-model="$ctrl.user.email">
     <input required type="password" name="password" placeholder="Password" ng-model="$ctrl.user.password">
+    <div ng-if="$ctrl.error">
+      <div class="error">
+        <span>{{$ctrl.error}}</span>
+      </div>
+    </div>
     <div>
       <button class="button" type="submit" ng-disabled="authForm.$invalid">{{$ctrl.buttonValue}}</button>
     </div>

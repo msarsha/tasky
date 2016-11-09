@@ -6,6 +6,6 @@
   </div>
 	<h2>Welcome to <span class="tasky">Tasky</span></h2>
 	<p>Easy way to keep track of your time</p>
-	<auth-form button-value="Register" on-submit="$ctrl.onRegister($event)"></auth-form>
+	<auth-form button-value="Register" on-submit="$ctrl.onRegister($event)" error="$ctrl.error"></auth-form>
 	<a ui-sref="auth.login">Already have an account? press to Login</a>
 </div>

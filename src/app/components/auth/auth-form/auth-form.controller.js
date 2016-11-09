@@ -1,12 +1,17 @@
-function AuthFormController (){
-  this.$onInit = function(){
+function AuthFormController() {
+  this.$onInit = function () {
     this.user = {
       email: '',
       password: ''
     }
+
+    this.error = "";
   }
-  
-  this.submit = function(){
+
+  this.$onChanges = function (changes) {
+  }
+
+  this.submit = function () {
     this.onSubmit({
       $event: {
         user: this.user

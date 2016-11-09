@@ -7,4 +7,15 @@
     width: 60%;
     margin-bottom: 10px;
   }
+
+  .error{
+    border-radius: 5px;
+    background: indianred;
+    margin: 10px auto;
+    color: white;
+    width: 60%;
+    line-height: 25px;
+    box-sizing: content-box;
+    padding: 5px 0;
+  }
 }
