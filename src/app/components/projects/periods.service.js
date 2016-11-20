@@ -22,11 +22,38 @@ function periodService($firebaseArray, $firebaseRef, $firebaseObject, authServic
     openConnections = [];
   }
 
-  this.remove = function(id, projectId){
+  this.remove = function (id, projectId) {
     var periodRef = periodsRef
       .child(getUid() + '/' + projectId + '/' + id);
 
     return $firebaseObject(periodRef).$remove();
+  }
+
+  this.addEditablePeriod = function (projectId) {
+    return $q(function (resolve, reject) {
+      var fbArrayRef = $firebaseArray(periodsRef.child(getUid() + '/' + projectId));
+      addToConnections(fbArrayRef);
+      fbArrayRef
+        .$add({
+          start: new Date().getTime(),
+          end: new Date().getTime() + 1000 * 60
+        })
+        .then(function (res) {
+          var projectPeriods = projectsRef.child(getUid() + '/' + projectId + '/periods');
+          var newPeriod = $firebaseObject(res);
+          addToConnections(newPeriod);
+
+          var periodToUpdate = {};
+          periodToUpdate[newPeriod.$id] = true;
+
+          projectPeriods
+            .update(periodToUpdate)
+            .then(function () {
+              resolve(newPeriod);
+            });
+        });
+    });
+
   }
 
   this.getAllForProjectForPeriod = function (projectId, fromDate, toDate) {

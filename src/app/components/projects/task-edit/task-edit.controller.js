@@ -38,6 +38,14 @@ var taskEditCtrl = function (periodService) {
     }
   }
 
+  this.addPeriod = function(){
+    periodService
+      .addEditablePeriod(self.task.project.$id)
+      .then(function(period){
+        self.task.periods.unshift(period);
+      })
+  }
+
   function filterAndSortPeriods(periods) {
     var filtered = periods.filter(function (period) {
       var start = new Date(period.start);
