@@ -22,6 +22,13 @@ function periodService($firebaseArray, $firebaseRef, $firebaseObject, authServic
     openConnections = [];
   }
 
+  this.remove = function(id, projectId){
+    var periodRef = periodsRef
+      .child(getUid() + '/' + projectId + '/' + id);
+
+    return $firebaseObject(periodRef).$remove();
+  }
+
   this.getAllForProjectForPeriod = function (projectId, fromDate, toDate) {
     var periodRef = periodsRef.child(getUid())
       .child(projectId)

@@ -10,8 +10,6 @@ var taskEditCtrl = function (periodService) {
   }
 
   this.onChange = function (period) {
-    console.log('change', period);
-
     if (!period.start || !period.end) {
       alert('no value');
       return;
@@ -25,6 +23,19 @@ var taskEditCtrl = function (periodService) {
       .then(function (res) {
         console.log('saved ', res);
       });
+  }
+
+  this.removePeriod = function (period) {
+    if (confirm("remove time period?")) {
+      periodService
+        .remove(period.$id, self.task.project.$id)
+        .then(function () {
+          console.log('removed');
+          self.task.periods = self.task.periods.filter(function (p) {
+            return p.$id !== period.$id;
+          })
+        })
+    }
   }
 
   function filterAndSortPeriods(periods) {
